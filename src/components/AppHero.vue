@@ -1,16 +1,20 @@
 <template>
-  <div :style="image" class="home-banner" style="max-height: 100vh">
-    <div class="container">
+  <div class="hero-image position-relative">
+    <div
+      class="container hero-content position-absolute justify-content-center align-items-center"
+    >
       <div class="row">
-        <div class="col-lg-12">
-          <h3 class="fw-bold text-white text-left">{{ herotitle }}</h3>
+        <div class="col-lg-12 mb-3">
+          <div class="hero-title">
+            <h3 class="fw-bold text-white text-lg-left">{{ herotitle }}</h3>
+          </div>
         </div>
       </div>
-      <div class="row mb-4 mt-4 align-items-center">
+      <div class="row">
         <div class="col-lg-4 mb-3">
           <input
             class="form-control me-2"
-            type="search"
+            type="text"
             id="searchInput"
             placeholder="lorem ipsum"
             aria-label="Search"
@@ -31,6 +35,7 @@
           <button class="button">Lorem ipsum</button>
         </div>
       </div>
+
       <div class="row mb-4 mt-4">
         <div class="col-lg-12">
           <h4 class="text-uppercase text-white fs-5 fw-bolder">
@@ -65,8 +70,6 @@ export default {
   },
   methods: {
     searchData() {
-      debugger;
-
       let filter, buttons, div, b, i, txtValue;
       filter = this.textInput.toUpperCase();
       buttons = document.getElementById("buttonsSearch");
@@ -92,44 +95,54 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home-banner {
-  background-size: contain;
+.hero-image {
+  background-image: url("https://i.postimg.cc/0NbqSxfQ/banner-image.png");
+  height: 500px;
+  background-position: center;
   background-repeat: no-repeat;
-  width: 100vw;
-  height: 100vh;
+  background-size: contain;
+  position: relative;
 }
 
-h3 {
+.hero-content {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .hero-image {
+    background-position: top;
+    background-size: cover;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .hero-content {
+    top: 82%;
+  }
+}
+
+.hero-title h3 {
   text-align: left;
   max-width: 500px;
 }
 
-.form-control {
-  border-radius: 0 !important;
-  padding: 10px 40px !important;
-}
+/**  styloe secondly row */
 
-/*General styles, for button */
-button {
-  border: none;
-  text-align: center;
-  display: inline-block;
-  border-radius: 30px;
-  font-size: 16px;
-  padding: 10px 40px;
+input[type="text"] {
+  padding: 12px 35px;
+  margin: 8px 0;
+  border: 1px solid #3838bb;
+  border-radius: 0;
 }
-.button {
-  background-color: #008cba; /* Green */
-  color: white;
+::placeholder {
+  color: #00008b;
+  font-weight: bold;
 }
-
-.btn {
-  color: white;
-  border: 2px solid white;
-  text-transform: uppercase;
-  height: 40px;
-}
-
 #searchInput {
   background-image: url("../assets/icon_search.png");
 }
@@ -141,32 +154,87 @@ button {
   background-repeat: no-repeat;
   background-position: 10px 12px;
 }
-::placeholder {
-  color: #00008b;
+
+.button {
+  width: 70%;
+  background-color: #008cba;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
   font-weight: bold;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-  .btn {
-    margin-bottom: 24px;
-    color: #008cba;
-    border: 2px solid #008cba;
-  }
+.btn {
+  color: white;
+  border: 2px solid white !important;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 10px 18px;
+  margin: 0 10px;
+  border-radius: 25px;
+  font-weight: bold;
+  height: 40px;
 }
-@media only screen and (min-width: 600px) {
+
+/* Styel for mobile */
+
+@media only screen and (max-width: 600px) {
+  #buttonsSearch {
+    margin-top: 60px;
+  }
   .btn {
-    margin-bottom: 24px;
+    color: #008cba;
+    border: 2px solid #008cba !important;
+    margin-bottom: 15px !important;
   }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+@media only screen and (max-width: 600px) {
+  #buttonsSearch {
+    margin-top: 60px !important;
   }
 }
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 991px) and (min-width: 601px) {
+  .hero-image {
+    background-size: cover !important;
+  }
+  .hero-content {
+    top: 77%;
+  }
+  .btn {
+    color: #008cba;
+    border: 2px solid #008cba !important;
+    margin-bottom: 15px !important;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+// @media only screen and (min-width: 768px) {
+//   .hero-image {
+//     background-size: cover;
+//   }
+//   .hero-content {
+//     top: 75%;
+//   }
+// }
+
+// @media only screen and (min-width: 600px) {
+//   .btn {
+//     margin-bottom: 24px;
+//   }
+// }
+
+// @media only screen and (min-width: 1200px) {
+//   .container {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//   }
+// }
 </style>

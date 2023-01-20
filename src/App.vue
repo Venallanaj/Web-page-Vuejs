@@ -1,43 +1,39 @@
 <template>
+  <AppHeader></AppHeader>
 
-<AppHeader></AppHeader>
+  <router-view></router-view>
+  <AppHero
+    herotitle="Lorem ipsum dolor sit amet consectetur adipisicing"
+    subtitle="Lorem ipsum dolor sit amet"
+  ></AppHero>
 
-<router-view></router-view>
-  <!-- other content :herotitle="'blah blah\nblah'"-->
-  <AppHero  herotitle="Lorem ipsum dolor sit amet consectetur adipisicing"  subtitle="Lorem ipsum dolor sit amet"  ></AppHero>
+  <AppTitle
+    title="Lorem ipsum dolor sit amet."
+    paragraph="Donec pede justo, fringilla vel, aliquet nec, vulputate eget, Donec pede justo, fringilla vel, aliquet nec, vulputate eget"
+  ></AppTitle>
 
-  <AppTitle  title="Lorem ipsum dolor sit amet." paragraph="Donec pede justo, fringilla vel, aliquet nec, vulputate eget, Donec pede justo, fringilla vel, aliquet nec, vulputate eget"></AppTitle >
+  <AppCta ctatitle="Lorem ipsum dolor sit amet"> </AppCta>
 
-  <AppCta ctatitle="Lorem ipsum dolor sit amet" > </AppCta>
-
-
-  <AppFooter> </AppFooter> 
-
-
+  <AppFooter> </AppFooter>
 </template>
 
 <script>
-
-import AppHeader from './components/AppHeader.vue'
-import AppHero from './components/AppHero.vue'
-import AppTitle from './components/AppTitle.vue'
-import AppCta from './components/AppCta.vue'
-
-import AppFooter from './components/AppFooter.vue'
+import AppHeader from "./components/AppHeader.vue";
+import AppHero from "./components/AppHero.vue";
+import AppTitle from "./components/AppTitle.vue";
+import AppCta from "./components/AppCta.vue";
+import AppFooter from "./components/AppFooter.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     AppHeader,
     AppHero,
     AppTitle,
     AppCta,
-    AppFooter
- 
-   
-
-}
-}
+    AppFooter,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -47,6 +43,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-
 }
 </style>

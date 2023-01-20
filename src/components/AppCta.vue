@@ -1,39 +1,32 @@
 <template>
-    <div class="container">
-      <div class="row mt-5 mb-5">
-          <div class="col-lg-12">
-              <h5 class="fw-bold">{{ctatitle }}</h5>
-              <button class="button">Lorem ipsum</button>       
-          </div>
+  <div class="container p-5 mt-5 mb-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="fw-bold fs-3 mb-4">{{ ctatitle }}</h3>
+        <button class="button">Lorem ipsum</button>
       </div>
-    </div>  
-  </template>
-  
-  
-  
-  <script>
-  export default {
-      name: "AppTitle",
-      props: {
-      ctatitle: String,
-     
-    }
-  }
-  </script>
-  
-  <style scoped lang="scss">
-  .button{
-  background-color: #8FDDDF;
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "AppTitle",
+  props: {
+    ctatitle: String,
+  },
+};
+</script>
+
+<style scoped lang="scss">
+.button {
+  background-color: #63cccf;
   border: none;
   color: white;
   padding: 15px 32px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
   font-size: 16px;
+  font-weight: bold;
   border-radius: 25px;
-  }
-  </style>
-  
-  
-  
+}
+</style>

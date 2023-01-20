@@ -1,46 +1,45 @@
 <template>
-  <div class="container mt-4">
-    <div class="row">
-      <div class="sliders">
-        <button @click="previous()">
-          <img src="../assets/prev.png" alt="prev" />
-        </button>
-        <div
-          class="col-lg-4"
-          v-for="(review, index) in reviews"
-          :key="review.id"
-        >
-          <card class="card" v-if="index == current">
-            <div class="card-body">
-              <img :src="image" alt="logo_brand" />
-              <img :src="quotation" alt="quotation" />
-
-              <p class="card-text">{{ review.desciption }}</p>
-              {{ review.fullName }}
-              {{ review.position }}
-            </div>
-          </card>
-        </div>
-
-        <button @click="next()">
-          <img src="../assets/next.png" alt="next" />
-        </button>
+  <Carousel :settings="settings" :breakpoints="breakpoints">
+    <slide v-for="item in items" :key="item.id">
+      <div class="carousel__item">
+        <card class="card">
+          <img :src="image" alt="logo_brand" class="logo_brand" />
+          <img :src="quotation" alt="quotation_mark" class="quotation_mark" />
+          <div class="card-body">
+            {{ item.desciption }}
+            {{ item.fullName }}
+            {{ item.position }}
+          </div>
+        </card>
       </div>
-    </div>
-  </div>
+    </slide>
+
+    <template #addons>
+      <navigation />
+      <pagination />
+    </template>
+  </Carousel>
 </template>
 
 <script>
+// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+
 import image from "../assets/brand-logo.png";
 import quotation from "../assets/shape-qutions.png";
 
 export default {
   name: "AppSlider",
+  components: {
+    Pagination,
+    Carousel,
+    Slide,
+    Navigation,
+  },
   data: function () {
     return {
-      timer: null,
-      current: 0,
-      reviews: [
+      items: [
         {
           id: 1,
           desciption:
@@ -68,35 +67,6 @@ export default {
       quotation: quotation,
     };
   },
-  methods: {
-    previous() {
-      this.current =
-        Math.abs(this.reviews.length + (this.current - 1)) %
-        this.reviews.length;
-      console.log(this.current);
-    },
-    next() {
-      //this.current = (this.current + 1) % this.reviews.length;
-
-      this.current++;
-
-      if (this.current >= this.reviews.length) {
-        this.current = 0;
-      }
-    },
-    startLoop() {
-      this.timer = setInterval(this.next, 2000);
-    },
-    endLoop() {
-      clearInterval(this.timer);
-    },
-    created() {
-      this.startLoop();
-    },
-    beforeDestroy() {
-      this.endLoop();
-    },
-  },
 };
 </script>
 
@@ -107,24 +77,26 @@ export default {
   transition: 0.3s;
   width: 100%;
   border: none;
-  padding-top: 40px;
-  padding-bottom: 30px;
-  padding-left: 15px;
-  padding-right: 15px;
-  font-size: 17px;
-}
-.card-text {
+  padding-top: 90px;
+  padding-bottom: 5px;
+  padding-left: 35px;
+  padding-right: 35px;
+  font-size: 18px;
   text-align: left;
-}
+  position: relative;
 
-.sliders {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-/* Next & previous buttons */
-.sliders button {
-  border: 0;
+  & .logo_brand {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    width: 60px;
+    height: auto;
+  }
+  & .quotation_mark {
+    position: absolute;
+    left: 10px;
+    width: 30px;
+    height: auto;
+  }
 }
 </style>
